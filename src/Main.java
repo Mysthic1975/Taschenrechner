@@ -1,39 +1,38 @@
-public class Main
-{
-    public static void main(String[] args)
-    {
-        int A, B;                                                           // Hilfsvariablen zum Rechnen
-        float C, D;                                                         // Komma
-        double E, F;                                                        // Komma
-        int Summe;                                                          // Addition
-        int intDifference;                                                  // Subtraktion
-        float floatDifference;                                              // Subtraktion mit Komma
-        int Product;                                                        // Multiplikation
-        int Qoutient;                                                       // Division
+import java.util.Scanner;
 
-        A = 10;
-        B = 5;
-        C = 4.4f;
-        D = 8.8f;
-        E = 10.5;
-        F = 5.5;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        Summe = A + B;
-        intDifference = A - B;
-        floatDifference = D - C;
-        double Ergebnis = E - F;
-        Product = A * B;
-        Qoutient = A / B;
+        System.out.println("Taschenrechner");
+        System.out.print("Erste Zahl eingeben: ");
+        int A = scanner.nextInt();
 
-        System.out.println ("A :" + A);                                     // Kommentar
-        System.out.println ("A + A: " + A + A);
-        System.out.println ("Addition: " + Summe);
-        System.out.println ("Subtraktion: " + intDifference);
-        System.out.println ("Float Subtraktion: " + floatDifference );
-        System.out.println ("Double Subtraktion: " + Ergebnis);
-        System.out.println ("Multiplikation: " + Product);
-        System.out.println ("Division: " + Qoutient);
-        System.out.println ("Hello world!");
+        System.out.print("Zweite Zahl eingeben: ");
+        int B = scanner.nextInt();
 
+        System.out.print("Rechenoperation auswählen (1 = +, 2 = -, 3 = *, 4 = /): ");
+        int operator = scanner.nextInt();
+
+        double ergebnis;
+        if (operator == 1) {
+            ergebnis = A + B;
+        } else if (operator == 2) {
+            ergebnis = A - B;
+        } else if (operator == 3) {
+            ergebnis = A * B;
+        } else if (operator == 4) {
+            if (B != 0) {
+                ergebnis = (double) A / B;
+            } else {
+                System.out.println("Fehler: Division durch Null!");
+                return;
+            }
+        } else {
+            System.out.println("Ungültige Eingabe!");
+            return;
+        }
+
+        System.out.println("Ergebnis: " + ergebnis);
     }
 }
