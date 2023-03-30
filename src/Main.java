@@ -1,39 +1,60 @@
-public class Main
-{
-    public static void main(String[] args)
-    {
-        int A, B;                                                           // Hilfsvariablen zum Rechnen
-        float C, D;                                                         // Komma
-        double E, F;                                                        // Komma
-        int Summe;                                                          // Addition
-        int intDifference;                                                  // Subtraktion
-        float floatDifference;                                              // Subtraktion mit Komma
-        int Product;                                                        // Multiplikation
-        int Qoutient;                                                       // Division
+import java.util.Scanner;
 
-        A = 10;
-        B = 5;
-        C = 4.4f;
-        D = 8.8f;
-        E = 10.5;
-        F = 5.5;
+public class Main {
+    public static void main(String[] args) {
+        Scanner eingabe = new Scanner(System.in);
+        int a, b;
+        int ErgebnisGanzzahl;
+        char Operator;
+        double ErgebnisKommazahl;
+        double c, d;
+        String fortsetzen;
 
-        Summe = A + B;
-        intDifference = A - B;
-        floatDifference = D - C;
-        double Ergebnis = E - F;
-        Product = A * B;
-        Qoutient = A / B;
+        do {
+            System.out.println("Taschenrechner");
+            System.out.print("Erste Zahl eingeben: ");
+            while (!eingabe.hasNextInt()) {
+                System.out.println("Ungültige Eingabe! Bitte geben Sie eine ganze Zahl ein.");
+                eingabe.next();
+            }
+            a = eingabe.nextInt();
+            System.out.print("Zweite Zahl eingeben: ");
+            while (!eingabe.hasNextInt()) {
+                System.out.println("Ungültige Eingabe! Bitte geben Sie eine ganze Zahl ein.");
+                eingabe.next();
+            }
+            b = eingabe.nextInt();
+            System.out.print("Rechenoperation auswählen (+, -, *, /): ");
+            Operator = eingabe.next().charAt(0);
 
-        System.out.println ("A :" + A);                                     // Kommentar
-        System.out.println ("A + A: " + A + A);
-        System.out.println ("Addition: " + Summe);
-        System.out.println ("Subtraktion: " + intDifference);
-        System.out.println ("Float Subtraktion: " + floatDifference );
-        System.out.println ("Double Subtraktion: " + Ergebnis);
-        System.out.println ("Multiplikation: " + Product);
-        System.out.println ("Division: " + Qoutient);
-        System.out.println ("Hello world!");
+            if (Operator == '+') {
+                ErgebnisGanzzahl = a + b;
+                System.out.println("Das Ergebnis von " + a + " + " + b + " ist: " + ErgebnisGanzzahl);
+            } else if (Operator == '-') {
+                ErgebnisGanzzahl = a - b;
+                System.out.println("Das Ergebnis von " + a + " - " + b + " ist: " + ErgebnisGanzzahl);
+            } else if (Operator == '*') {
+                ErgebnisGanzzahl = a * b;
+                System.out.println("Das Ergebnis von " + a + " * " + b + " ist: " + ErgebnisGanzzahl);
+            } else if (Operator == '/' && b != 0) {
+                c = Double.valueOf(a);
+                d = Double.valueOf(b);
 
+                ErgebnisKommazahl = c / d;
+                System.out.println("Das Ergebnis von " + a + " / " + b + " ist: " + ErgebnisKommazahl);
+            } else if (Operator == '/' && b == 0) {
+                System.out.println("Division durch Null nicht möglich!");
+            } else {
+                System.out.println("Ungültige Eingabe! Bitte wählen Sie eine gültige Rechenoperation (+, -, *, /).");
+            }
+
+            while (true) {
+                System.out.print("Möchtest du eine weitere Berechnung durchführen? (j/E): ");
+                fortsetzen = eingabe.next().toUpperCase();
+                if (fortsetzen.equals("J") || fortsetzen.equals("E")) {
+                    break;
+                }
+            }
+        } while (!fortsetzen.equals("E"));
     }
 }
