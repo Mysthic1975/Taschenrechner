@@ -2,64 +2,54 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner eingabe = new Scanner(System.in);
+        int a, b;
+        int ErgebnisGanzzahl;
+        char Operator;
+        double ErgebnisKommazahl;
+        double c, d;
+        String fortsetzen;
 
-        System.out.println("Taschenrechner");
-        System.out.print("Erste Zahl eingeben: ");
-        int A = scanner.nextInt();
-        //double A = scanner.nextDouble();
-
-        System.out.print("Zweite Zahl eingeben: ");
-        int B = scanner.nextInt();
-        //double B = scanner.nextDouble();
-
-        System.out.print("Rechenoperation auswählen ( 1 = +, 2 = -, 3 = *, 4 = / ): ");
-        int operator = scanner.nextInt();
-        //System.out.print("Rechenoperation auswählen (+, -, *, /): ");
-        //String operation = scanner.next();
-
-        double ergebnis;
-        if (operator == 1) {
-            ergebnis = A + B;
-        } else if (operator == 2) {
-            ergebnis = A - B;
-        } else if (operator == 3) {
-            ergebnis = A * B;
-        } else if (operator == 4) {
-            if (B != 0) {
-                ergebnis = (double) A / B;
-            } else {
-                System.out.println("Division durch Null nicht möglich!");
-                return;
+        do {
+            System.out.println("Taschenrechner");
+            System.out.print("Erste Zahl eingeben: ");
+            while (!eingabe.hasNextInt()) {
+                System.out.println("Ungültige Eingabe! Bitte geben Sie eine ganze Zahl ein.");
+                eingabe.next();
             }
-        } else {
-            System.out.println("Ungültige Eingabe!");
-            return;
+            a = eingabe.nextInt();
+            System.out.print("Zweite Zahl eingeben: ");
+            while (!eingabe.hasNextInt()) {
+                System.out.println("Ungültige Eingabe! Bitte geben Sie eine ganze Zahl ein.");
+                eingabe.next();
+            }
+            b = eingabe.nextInt();
+            System.out.print("Rechenoperation auswählen (+, -, *, /): ");
+            Operator = eingabe.next().charAt(0);
 
-            //double ergebnis;
-            //switch (operation) {
-                //case "+":
-                    //ergebnis = A + B;
-                    //break;
-                //case "-":
-                    //ergebnis = A - B;
-                    //break;
-                //case "*":
-                    //ergebnis = A * B;
-                    //break;
-                //case "/":
-                    //if (B != 0) {
-                        //ergebnis = A / B;
-                    //} else {
-                        //System.out.println("Division durch Null nicht möglich!");
-                        //return;
-                    //}
-                    //break;
-                //default:
-                    //System.out.println("Ungültige Eingabe!");
-                    //return;
+            if (Operator == '+') {
+                ErgebnisGanzzahl = a + b;
+                System.out.println("Das Ergebnis von " + a + " + " + b + " ist: " + ErgebnisGanzzahl);
+            } else if (Operator == '-') {
+                ErgebnisGanzzahl = a - b;
+                System.out.println("Das Ergebnis von " + a + " - " + b + " ist: " + ErgebnisGanzzahl);
+            } else if (Operator == '*') {
+                ErgebnisGanzzahl = a * b;
+                System.out.println("Das Ergebnis von " + a + " * " + b + " ist: " + ErgebnisGanzzahl);
+            } else if (Operator == '/' && b != 0) {
+                c = Double.valueOf(a);
+                d = Double.valueOf(b);
 
-        }
+                ErgebnisKommazahl = c / d;
+                System.out.println("Das Ergebnis von " + a + " / " + b + " ist: " + ErgebnisKommazahl);
+            } else if (Operator == '/' && b == 0) {
+                System.out.println("Division durch Null nicht möglich!");
+            } else {
+                System.out.println("Ungültige Eingabe! Bitte wählen Sie eine gültige Rechenoperation (+, -, *, /).");
+            }
 
-        System.out.println("Ergebnis: " + ergebnis);
+            System.out.print("Möchtest du eine weitere Berechnung durchführen? (j/n): ");
+            fortsetzen = eingabe.next();
+        } while (fortsetzen.equalsIgnoreCase("j"));
     }
+}
