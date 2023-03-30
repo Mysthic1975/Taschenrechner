@@ -56,5 +56,8 @@ public class Main {
                 }
             }
         } while (!fortsetzen.equals("E"));
+
+        // Nachricht am Ende des Programms ausgeben
+        System.out.println("Danke für die Benutzung des Taschenrechners!");
     }
 }
