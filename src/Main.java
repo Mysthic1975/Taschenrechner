@@ -49,9 +49,9 @@ public class Main {
             }
 
             while (true) {
-                System.out.print("Möchtest du eine weitere Berechnung durchführen? (j/n/E): ");
+                System.out.print("Möchtest du eine weitere Berechnung durchführen? (j/E): ");
                 fortsetzen = eingabe.next().toUpperCase();
-                if (fortsetzen.equals("J") || fortsetzen.equals("N") || fortsetzen.equals("E")) {
+                if (fortsetzen.equals("J") || fortsetzen.equals("E")) {
                     break;
                 }
             }
