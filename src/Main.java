@@ -48,8 +48,13 @@ public class Main {
                 System.out.println("Ungültige Eingabe! Bitte wählen Sie eine gültige Rechenoperation (+, -, *, /).");
             }
 
-            System.out.print("Möchtest du eine weitere Berechnung durchführen? (j/n): ");
-            fortsetzen = eingabe.next();
-        } while (fortsetzen.equalsIgnoreCase("j"));
+            while (true) {
+                System.out.print("Möchtest du eine weitere Berechnung durchführen? (j/n/E): ");
+                fortsetzen = eingabe.next().toUpperCase();
+                if (fortsetzen.equals("J") || fortsetzen.equals("N") || fortsetzen.equals("E")) {
+                    break;
+                }
+            }
+        } while (!fortsetzen.equals("E"));
     }
 }
